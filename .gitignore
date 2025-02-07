@@ -1,0 +1,23 @@
+# Ignore large model file
+cat-dog-classification.h5
+
+# Virtual environment
+venv/
+__pycache__/
+
+# IDE settings
+.idea/
+
+# Python bytecode
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Other files
+.DS_Store
