@@ -21,6 +21,8 @@ def prepare_image(image_bytes):
     Prepares the uploaded image for classification by resizing, normalizing, and adding a batch dimension.
     """
     image = Image.open(io.BytesIO(image_bytes))
+    if image.mode == 'RGBA':
+        image = image.convert('RGB') # Convert RGBA to RGB if the image has an alpha channel
     image = image.resize((256, 256))  # Resize to match the input shape
     image = np.array(image) / 255.0  # Normalize
     image = np.expand_dims(image, axis=0)  # Add batch dimension
