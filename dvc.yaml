@@ -1,0 +1,36 @@
+stages:
+  extract_data:
+    cmd: python src/extract_data.py
+    deps:
+      - data/raw/dataset.zip
+      - src/extract_data.py
+    outs:
+      - data/raw/train/cats
+      - data/raw/train/dogs
+      - data/raw/test/cats
+      - data/raw/test/dogs
+  
+  prepare_data:
+    cmd: python src/data_preprocessing.py
+    deps:
+      - data/raw/train/cats
+      - data/raw/train/dogs
+      - data/raw/test/cats
+      - data/raw/test/dogs
+      - src/data_preprocessing.py
+    outs:
+      - data/processed/train/cats
+      - data/processed/train/dogs
+      - data/processed/test/cats
+      - data/processed/test/dogs
+  
+  train_model:
+    cmd: python src/train_model.py
+    deps:
+      - data/processed/train/cats
+      - data/processed/train/dogs
+      - data/processed/test/cats
+      - data/processed/test/dogs
+      - src/train_model.py
+    outs:
+      - models/model.h5

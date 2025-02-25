@@ -1,10 +1,6 @@
-# Ignore large model file
-cat-dog-classification.h5
-
 # Virtual environment
 venv/
 __pycache__/
-new-env
 
 # IDE settings
 .idea/
@@ -22,3 +18,4 @@ new-env
 
 # Other files
 .DS_Store
+/config

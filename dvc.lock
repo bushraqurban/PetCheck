@@ -1,0 +1,99 @@
+schema: '2.0'
+stages:
+  download_data:
+    cmd: python download_data.py
+    deps:
+    - path: config/kaggle.json
+      hash: md5
+      md5: 8d310974fd78be1e80cd427856aa84d7
+      size: 68
+    - path: download_data.py
+      hash: md5
+      md5: eb0b9d45bdec6f9a4ffe59ba6befe8b7
+      size: 1605
+    outs:
+    - path: data/raw/dogs-vs-cats
+      hash: md5
+      md5: 8ae06a60050c3729b8d77ed0e593b9cf.dir
+      size: 3430596234
+      nfiles: 100008
+  extract_data:
+    cmd: python src/extract_data.py
+    deps:
+    - path: data/raw/dataset.zip
+      hash: md5
+      md5: 207f86e5c6c75581e10cc7fbfb6f5a86
+      size: 1142891694
+    - path: src/extract_data.py
+      hash: md5
+      md5: c2081552b6b73f73ad88f566fa65a61c
+      size: 309
+    outs:
+    - path: data/raw/test/cats
+      hash: md5
+      md5: 156a6b8de3cb98cd2b908cb0eba85045.dir
+      size: 52366711
+      nfiles: 2500
+    - path: data/raw/test/dogs
+      hash: md5
+      md5: aa1d717709c771c209af9327cb4abd06.dir
+      size: 60801748
+      nfiles: 2500
+    - path: data/raw/train/cats
+      hash: md5
+      md5: b661cff0dedd8421d8c0d912e3560a88.dir
+      size: 209547111
+      nfiles: 10000
+    - path: data/raw/train/dogs
+      hash: md5
+      md5: f5a2a998dad6224c8cd58d6fa3f492fc.dir
+      size: 249199806
+      nfiles: 10000
+  prepare_data:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - path: data/raw/test/cats
+      hash: md5
+      md5: 156a6b8de3cb98cd2b908cb0eba85045.dir
+      size: 52366711
+      nfiles: 2500
+    - path: data/raw/test/dogs
+      hash: md5
+      md5: aa1d717709c771c209af9327cb4abd06.dir
+      size: 60801748
+      nfiles: 2500
+    - path: data/raw/train/cats
+      hash: md5
+      md5: b661cff0dedd8421d8c0d912e3560a88.dir
+      size: 209547111
+      nfiles: 10000
+    - path: data/raw/train/dogs
+      hash: md5
+      md5: f5a2a998dad6224c8cd58d6fa3f492fc.dir
+      size: 249199806
+      nfiles: 10000
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: 98ab7a83a14617319e1efb0dd0d85daa
+      size: 1881
+    outs:
+    - path: data/processed/test/cats
+      hash: md5
+      md5: eaf86908ee7d98b5871062c94cf36843.dir
+      size: 29733888
+      nfiles: 2500
+    - path: data/processed/test/dogs
+      hash: md5
+      md5: 203a1601ab6fa5b6160687139548aa66.dir
+      size: 34890815
+      nfiles: 2500
+    - path: data/processed/train/cats
+      hash: md5
+      md5: 4c8dca7e670c2b3592de408a364754e4.dir
+      size: 120302216
+      nfiles: 10000
+    - path: data/processed/train/dogs
+      hash: md5
+      md5: c2c966499d20599562164943a4e7be4a.dir
+      size: 141466522
+      nfiles: 10000

@@ -9,13 +9,15 @@ Additionally, a random image of the respective animal (cat/dog) is displayed.
 
 import streamlit as st
 import tensorflow as tf
+from pathlib import Path
 from utils import prepare_image, get_cat_fact, get_dog_fact, get_random_cat_image, get_random_dog_image
 
 # Load the pre-trained model
-model = tf.keras.models.load_model('cat-dog-classification.h5')
+model_path = Path('models/model.h5')
+model = tf.keras.models.load_model(model_path)
 
 # Streamlit UI
-st.image("logo.png", width=400, use_container_width=True)
+st.image("app/logo.png", width=400, use_container_width=True)
 st.write("Upload an image of a cat or dog to predict.")
 
 # Upload image
